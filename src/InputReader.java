@@ -3,19 +3,29 @@ import java.util.*;
 
 public class InputReader {
 
-    /*
-    1 ≤ V ≤ 20    number of providers
-    1 ≤ S ≤ 500 the number of services
-    1 ≤ Rv ≤ 100
-    1 ≤ C ≤ 20   number of countries
-    1 ≤ P ≤ 100000      number of projects
-     */
+    // 1 <= Rv <= 100		wtf is this ?
 
     int[] VSCP = new int[4];
-    String[] servicesNames;
-    String[] countriesNames;
-    ArrayList<Provider> providers;
-    ArrayList<Project> projects;
+    /**
+     * 1 < 20
+     */
+    public int totalProviders = 0;
+    /**
+     * 1 < 500
+     */
+    public int totalServices = 0;
+    /**
+     * 1 < 20
+     */
+    public int totalCountries = 0;
+    /**
+     * 1 < 100,000
+     */
+    public int totalProjects = 0;
+    public String[] servicesNames;
+    public String[] countriesNames;
+    private ArrayList<Provider> providers;
+    private ArrayList<Project> projects;
 
     public InputReader(String pathToFile) throws Exception {
         // check file exists
@@ -28,53 +38,86 @@ public class InputReader {
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
         VSCP = readLineReturnArrayInt(bufferedReader.readLine());
-
+        totalProviders = VSCP[0];
+        totalServices = VSCP[1];
+        totalCountries = VSCP[2];
+        totalProjects = VSCP[3];
         servicesNames = bufferedReader.readLine().split(" ");
         countriesNames = bufferedReader.readLine().split(" ");
-        providers = new ArrayList<Provider>(VSCP[0]);
-        projects = new ArrayList<Project>(VSCP[3]);
+        providers = new ArrayList<Provider>(totalProviders);
+        projects = new ArrayList<Project>(totalProjects);
 
-        getProviders(bufferedReader, VSCP[0]);
-        getProjects(bufferedReader, VSCP[3], VSCP[1]);
+        setProviders(bufferedReader, totalProviders);
+        setProjects(bufferedReader, totalProjects, totalServices);
     }
 
-
-    private void getProviders(BufferedReader bufferedReader, int V) throws IOException {
+    private void setProviders(BufferedReader bufferedReader, int totalProviders) throws IOException {
+    	
         String line;
+        String providerName;
+        int totalProviderRegions;
 
-        for(int j = 0; j<V; j++){ //for number of providers
+        for(int j = 0; j<totalProviders; j++){
 
-            line = bufferedReader.readLine();
-            providers.add(new Provider(line));
+        	line = bufferedReader.readLine();
+            providerName = line.split(" ")[0];
+            totalProviderRegions = Integer.parseInt( line.split(" ")[1] );
+        	Provider provider = new Provider(providerName, totalProviderRegions);
 
-            Provider tempProvider = providers.get(providers.size()-1);
-            int n = tempProvider.getN();
+            for (int i=0; i<totalProviderRegions; i++){
 
-            for (int i=0; i<n; i++){
+            	String region = bufferedReader.readLine();
+                RegionalProvider regionalProvider = new RegionalProvider(region);
 
                 line = bufferedReader.readLine();
-                RegionalProvider tempRegionalProvider = new RegionalProvider(line);
-
-                line = bufferedReader.readLine();
-
-                tempRegionalProvider.setTotalPackagesAvailable(Integer.parseInt(line.split(" ")[0]));
-                tempRegionalProvider.setPackageUnitCost(Float.parseFloat(line.split(" ")[1]));
-
-                int[] tempArr = new int[line.split(" ").length-2];
-                for(int k=0; k<tempArr.length; k++){
+                regionalProvider.setTotalPackagesAvailable(Integer.parseInt(line.split(" ")[0]));
+                regionalProvider.setPackageUnitCost(Float.parseFloat(line.split(" ")[1]));
+                int[] tempArr = new int[totalServices];
+                for(int k=0; k<totalServices; k++){
                     tempArr[k] = Integer.parseInt(line.split(" ")[k+2]);
                 }
-
-                tempRegionalProvider.setServicePerPackage(tempArr);
+                regionalProvider.setServiceUnitsPerPackage(tempArr);
 
                 line = bufferedReader.readLine();
-                tempArr = readLineReturnArrayInt(line);
-                tempRegionalProvider.setCountriesLatency(tempArr);
+                regionalProvider.setCountriesLatency(readLineReturnArrayInt(line));
 
-                tempProvider.addRegionalProvider(tempRegionalProvider);
+                provider.addRegionalProvider(regionalProvider);
             }
+            
+            providers.add(provider);
 
         }
+    }
+
+    private void setProjects(BufferedReader bufferedReader, int totalProjects, int totalServices) throws IOException {
+        
+    	String line;
+
+        for (int j = 0; j < totalProjects; j++) {
+        	
+            line = bufferedReader.readLine();
+            String[] arr = line.split(" ");
+            
+            int penalty = Integer.parseInt(arr[0]);
+
+            String countriesName = arr[1];
+
+            int[] servicesUnitsNeeded = new int[totalServices];
+            int k = 0;
+            for (int i=2; i<arr.length; i++) {
+                servicesUnitsNeeded[k++] = Integer.parseInt(arr[i]);
+            }
+
+            projects.add(new Project(penalty, countriesName, servicesUnitsNeeded));
+        }
+    }
+
+    public ArrayList<Provider> getProviders() {
+        return providers;
+    }
+
+    public ArrayList<Project> getProjects() {
+        return projects;
     }
     
     private int[] readLineReturnArrayInt(String line) {
@@ -86,52 +129,6 @@ public class InputReader {
         }
 
         return numArray;
-    }
-
-
-    private void getProjects(BufferedReader bufferedReader, int P, int S) throws IOException {
-        String line;
-
-        for (int j = 0; j < P; j++) { //for number of projects
-
-            //255000 Italy 20 0 555
-
-            line = bufferedReader.readLine();
-            String[] arr = line.split(" ");
-
-            int penalty = Integer.parseInt(arr[0]);
-
-            String countriesName = arr[1];
-
-            int[] units = new int[S];
-            int k = 0;
-            for (int i=2; i<arr.length; i++) {
-                units[k++] = Integer.parseInt(arr[i]);
-            }
-
-            projects.add(new Project(penalty, countriesName, units));
-        }
-    }
-
-
-    public int[] getVSCP() {
-        return VSCP;
-    }
-
-    public String[] getServicesNames() {
-        return servicesNames;
-    }
-
-    public String[] getCountriesNames() {
-        return countriesNames;
-    }
-
-    public ArrayList<Provider> getProviders() {
-        return providers;
-    }
-
-    public ArrayList<Project> getProjects() {
-        return projects;
     }
 
 }

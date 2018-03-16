@@ -10,8 +10,8 @@ public class Main {
          */
 
         //read the input contiene tutti i dati
-        InputReader inputRed = new InputReader("./input/first_adventure.in");
+        InputReader input = new InputReader("./input/first_adventure.in");
 
-        System.out.printf("mandi");
+        System.out.printf(input.getProviders().toString());
     }
 }
