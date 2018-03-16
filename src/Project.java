@@ -2,16 +2,41 @@ public class Project {
 
     private int penalty;
     private String countryName;
-    private int[] units;
-
-
-    public Project(int penalty, String countryName, int[] units){
+    private int[] servicesUnitsNeeded;
+    
+    public Project() {
+    	this.countryName = "Area 51";
+    }
+    		
+    public Project(int penalty, String countryName, int[] servicesUnitsNeeded){
         this.penalty = penalty;
         this.countryName = countryName;
-        this.units = units;
+        this.servicesUnitsNeeded = servicesUnitsNeeded;
 
     }
 
+	public int getPenalty() {
+		return penalty;
+	}
 
-    //metodo ordinare per penalty
+	public void setPenalty(int penalty) {
+		this.penalty = penalty;
+	}
+
+	public String getCountryName() {
+		return countryName;
+	}
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
+
+	public int[] getServicesUnitsNeeded() {
+		return servicesUnitsNeeded;
+	}
+
+	public void setServicesUnitsNeeded(int[] servicesUnitsNeeded) {
+		this.servicesUnitsNeeded = servicesUnitsNeeded;
+	}
+    
 }

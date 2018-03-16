@@ -3,11 +3,11 @@ public class RegionalProvider {
     private String region;
 	private int totalPackagesAvailable;
     private float packageUnitCost;
-    private int[] servicePerPackage;
+    private int[] serviceUnitsPerPackage;
     private int[] countriesLatency;
 
     public RegionalProvider(){
-    	region = "Nowhere to be found";
+    	this.region = "Nowhere to be found";
     }
     
     public RegionalProvider(String region){
@@ -38,12 +38,12 @@ public class RegionalProvider {
 		this.region = region;
 	}
 
-	public int[] getServicePerPackage() {
-		return servicePerPackage;
+	public int[] getServiceUnitsPerPackage() {
+		return serviceUnitsPerPackage;
 	}
 	
-    public void setServicePerPackage(int[] servicePerPackage){
-    	this.servicePerPackage = servicePerPackage;
+    public void setServiceUnitsPerPackage(int[] servicePerPackage){
+    	this.serviceUnitsPerPackage = servicePerPackage;
     }
 
 	public int[] getCountriesLatency() {

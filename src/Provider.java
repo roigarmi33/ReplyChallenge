@@ -2,23 +2,46 @@ import java.util.ArrayList;
 
 public class Provider {
 
-    String name;
-    private int n=0; // indica il numero delle regioni
+    private String providerName;
+    private int totalProviderRegions = 0;
     private ArrayList<RegionalProvider> regionalProviders;
 
-    public Provider(String line){
-
-        name = line.split(" ")[0];
-        n = Integer.parseInt( line.split(" ")[1] );
-        regionalProviders = new ArrayList<RegionalProvider>();
+    public Provider(){
+    	this.providerName = "Ghost Provider";
     }
 
-    public void addRegionalProvider(RegionalProvider new_region){
-        this.regionalProviders.add(new_region);
+    public Provider(String providerName, int totalProviderRegions){
+    	this.setProviderName(providerName);
+    	this.setTotalProviderRegions(totalProviderRegions);
+        this.regionalProviders = new ArrayList<RegionalProvider>();
     }
 
-    public int getN(){
-        return this.n;
+	public String getProviderName() {
+		return providerName;
+	}
+
+	public void setProviderName(String providerName) {
+		this.providerName = providerName;
+	}
+
+	public int getTotalProviderRegions() {
+		return totalProviderRegions;
+	}
+
+	public void setTotalProviderRegions(int totalProviderRegions) {
+		this.totalProviderRegions = totalProviderRegions;
+	}
+
+	public ArrayList<RegionalProvider> getRegionalProviders() {
+		return regionalProviders;
+	}
+
+	public void setRegionalProviders(ArrayList<RegionalProvider> regionalProviders) {
+		this.regionalProviders = regionalProviders;
+	}
+
+	public void addRegionalProvider(RegionalProvider regionalProvider){
+		this.regionalProviders.add(regionalProvider);
     }
 
 
