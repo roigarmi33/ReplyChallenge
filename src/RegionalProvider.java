@@ -1,39 +1,25 @@
 public class RegionalProvider {
 
     private String region;
-
-    private int totalNumberOfPackeges;
+	private int totalPackagesAvailable;
     private float packageUnitCost;
-    private int[] servicesAvailable;
+    private int[] servicePerPackage;
     private int[] countriesLatency;
 
-    public RegionalProvider(String location, int S, int C){
-
-        this.region = location;
-        servicesAvailable = new int[S];
-        countriesLatency = new int[C];
-
+    public RegionalProvider(){
+    	region = "Nowhere to be found";
+    }
+    
+    public RegionalProvider(String region){
+    	this.setRegion(region);
     }
 
-
-    public void setServicesAvailable(int[] arr){
-        for (int i=0; i<arr.length;  i++){
-            this.servicesAvailable[i] = arr[i];
-        }
+    public int getTotalPackagesAvailable() {
+        return totalPackagesAvailable;
     }
 
-    public void setCountriesLatency(int[] arr){
-        for (int i=0; i<arr.length; i++){
-            this.countriesLatency[i] = arr[i];
-        }
-    }
-
-    public int getTotalNumberOfPackeges() {
-        return totalNumberOfPackeges;
-    }
-
-    public void setTotalNumberOfPackeges(int totalNumberOfPackeges) {
-        this.totalNumberOfPackeges = totalNumberOfPackeges;
+    public void setTotalPackagesAvailable(int totalPackagesAvailable) {
+        this.totalPackagesAvailable = totalPackagesAvailable;
     }
 
     public float getPackageUnitCost() {
@@ -43,5 +29,29 @@ public class RegionalProvider {
     public void setPackageUnitCost(float packageUnitCost) {
         this.packageUnitCost = packageUnitCost;
     }
+    
+    public String getRegion() {
+		return region;
+	}
 
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
+	public int[] getServicePerPackage() {
+		return servicePerPackage;
+	}
+	
+    public void setServicePerPackage(int[] servicePerPackage){
+    	this.servicePerPackage = servicePerPackage;
+    }
+
+	public int[] getCountriesLatency() {
+		return countriesLatency;
+	}
+
+	public void setCountriesLatency(int[] countriesLatency){
+		this.countriesLatency = countriesLatency;
+	}		
+	
 }
