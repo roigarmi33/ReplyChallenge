@@ -10,7 +10,7 @@ public class Main {
          */
 
         //read the input contiene tutti i dati
-        InputReader inputRed = new InputReader("/home/nyriu/Documents/Università/Secondo anno/OOP/Progetto Java/ReplyChallenge/input/first_adventure.in");
+        InputReader inputRed = new InputReader("./input/first_adventure.in");
 
         System.out.printf("mandi");
     }

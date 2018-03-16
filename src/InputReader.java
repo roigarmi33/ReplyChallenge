@@ -1,9 +1,5 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
 public class InputReader {
 
@@ -27,8 +23,8 @@ public class InputReader {
     }
 
     private void readInput(String pathToFile) throws IOException {
-        String line = null;
-        FileReader fileReader = new FileReader(pathToFile);
+        
+    	FileReader fileReader = new FileReader(pathToFile);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
         VSCP = readLineReturnArrayInt(bufferedReader.readLine());
@@ -57,11 +53,11 @@ public class InputReader {
             for (int i=0; i<n; i++){
 
                 line = bufferedReader.readLine();
-                RegionalProvider tempRegionalProvider = new RegionalProvider(line, VSCP[1], VSCP[2]);
+                RegionalProvider tempRegionalProvider = new RegionalProvider(line);
 
                 line = bufferedReader.readLine();
 
-                tempRegionalProvider.setTotalNumberOfPackeges(Integer.parseInt(line.split(" ")[0]));
+                tempRegionalProvider.setTotalPackagesAvailable(Integer.parseInt(line.split(" ")[0]));
                 tempRegionalProvider.setPackageUnitCost(Float.parseFloat(line.split(" ")[1]));
 
                 int[] tempArr = new int[line.split(" ").length-2];
@@ -69,7 +65,7 @@ public class InputReader {
                     tempArr[k] = Integer.parseInt(line.split(" ")[k+2]);
                 }
 
-                tempRegionalProvider.setServicesAvailable(tempArr);
+                tempRegionalProvider.setServicePerPackage(tempArr);
 
                 line = bufferedReader.readLine();
                 tempArr = readLineReturnArrayInt(line);
@@ -80,12 +76,12 @@ public class InputReader {
 
         }
     }
-
+    
     private int[] readLineReturnArrayInt(String line) {
         String[] arr1 = line.split(" ");
         int[] numArray = new int[arr1.length];
         int k=0;
-        for (String s : line.split(" ")) {
+        for (String s : arr1) {
             numArray[k++] = Integer.parseInt(s);
         }
 
