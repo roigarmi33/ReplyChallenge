@@ -3,7 +3,7 @@ import java.util.*;
 
 public class InputReader {
 
-    // 1 <= Rv <= 100		wtf is this ?
+    // 1 <= Rv <= 100		TODO wtf is this ?
 
     int[] VSCP = new int[4];
     /**
@@ -25,16 +25,17 @@ public class InputReader {
     public String[] servicesNames;
     public String[] countriesNames;
     private ArrayList<Provider> providers;
+    public int totalRegionalProviders = 0;
     private ArrayList<Project> projects;
 
-    public InputReader(String pathToFile) throws Exception {
+    public InputReader(String pathToInputFile) throws Exception {
         // check file exists
-        readInput(pathToFile);
+        readInput(pathToInputFile);
     }
 
-    private void readInput(String pathToFile) throws IOException {
+    private void readInput(String pathToInputFile) throws IOException {
         
-    	FileReader fileReader = new FileReader(pathToFile);
+    	FileReader fileReader = new FileReader(pathToInputFile);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
         VSCP = readLineReturnArrayInt(bufferedReader.readLine());
@@ -62,12 +63,15 @@ public class InputReader {
         	line = bufferedReader.readLine();
             providerName = line.split(" ")[0];
             totalProviderRegions = Integer.parseInt( line.split(" ")[1] );
+            totalRegionalProviders += totalProviderRegions;
         	Provider provider = new Provider(providerName, totalProviderRegions);
-
+        	provider.setIndex(j);
+        	
             for (int i=0; i<totalProviderRegions; i++){
 
             	String region = bufferedReader.readLine();
                 RegionalProvider regionalProvider = new RegionalProvider(region);
+                regionalProvider.setIndex(i);
 
                 line = bufferedReader.readLine();
                 regionalProvider.setTotalPackagesAvailable(Integer.parseInt(line.split(" ")[0]));
@@ -131,4 +135,9 @@ public class InputReader {
         return numArray;
     }
 
+	public int getTotalRegionalProviders() {
+		return totalRegionalProviders;
+	}
+
+    
 }
