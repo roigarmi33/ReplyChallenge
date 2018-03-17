@@ -5,6 +5,7 @@ public class Provider {
     private String providerName;
     private int totalProviderRegions = 0;
     private ArrayList<RegionalProvider> regionalProviders;
+    private int index;
 
     public Provider(){
     	this.providerName = "Ghost Provider";
@@ -44,5 +45,30 @@ public class Provider {
 		this.regionalProviders.add(regionalProvider);
     }
 
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+	
+	public boolean isServiceAvailable(int serviceIndex) {
+		for (RegionalProvider rp : regionalProviders) {
+			if (rp.isServiceAvailable(serviceIndex)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public int getWhereServiceAvailable(int serviceIndex) {
+		for (RegionalProvider rp : regionalProviders) {
+			if (rp.isServiceAvailable(serviceIndex)) {
+				return rp.getIndex();
+			}
+		}
+		return -1;
+	}
 
 }

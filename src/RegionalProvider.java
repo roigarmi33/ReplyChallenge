@@ -5,6 +5,7 @@ public class RegionalProvider {
     private float packageUnitCost;
     private int[] serviceUnitsPerPackage;
     private int[] countriesLatency;
+    private int index;
 
     public RegionalProvider(){
     	this.region = "Nowhere to be found";
@@ -42,6 +43,10 @@ public class RegionalProvider {
 		return serviceUnitsPerPackage;
 	}
 	
+	public int getServiceUnitsPerPackage(int i) {
+		return serviceUnitsPerPackage[i];
+	}
+	
     public void setServiceUnitsPerPackage(int[] servicePerPackage){
     	this.serviceUnitsPerPackage = servicePerPackage;
     }
@@ -52,6 +57,19 @@ public class RegionalProvider {
 
 	public void setCountriesLatency(int[] countriesLatency){
 		this.countriesLatency = countriesLatency;
-	}		
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}	
+	
+	public boolean isServiceAvailable(int serviceIndex) {
+		return this.serviceUnitsPerPackage[serviceIndex] != 0 && this.totalPackagesAvailable > 0;
+	}
+	
 	
 }
