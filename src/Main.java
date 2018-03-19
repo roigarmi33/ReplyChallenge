@@ -8,6 +8,6 @@ public class Main {
 
         Output fifo = Algorithm.FIFO(input);
         
-        fifo.print(".output/test.txt");
+        fifo.print("./output/test.txt");
     }
 }
