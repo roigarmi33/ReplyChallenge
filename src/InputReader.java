@@ -3,33 +3,35 @@ import java.util.*;
 
 public class InputReader {
 
-    // 1 <= Rv <= 100		TODO wtf is this ?
-
-    int[] VSCP = new int[4];
     /**
      * 1 < 20
      */
-    public int totalProviders = 0;
+    private int totalProviders = 0;
+
     /**
      * 1 < 500
      */
-    public int totalServices = 0;
+    private int totalServices = 0;
+
     /**
      * 1 < 20
      */
-    public int totalCountries = 0;
+    private int totalCountries = 0;
+
     /**
      * 1 < 100,000
      */
-    public int totalProjects = 0;
-    public String[] servicesNames;
-    public String[] countriesNames;
+    private int totalProjects = 0;
+
+
+    private String[] servicesNames;
+    private String[] countriesNames;
     private ArrayList<Provider> providers;
-    public int totalRegionalProviders = 0;
+    private int totalRegionalProviders = 0;
     private ArrayList<Project> projects;
 
     public InputReader(String pathToInputFile) throws Exception {
-        // check file exists
+        // TODO check if file exists
         readInput(pathToInputFile);
     }
 
@@ -38,7 +40,7 @@ public class InputReader {
     	FileReader fileReader = new FileReader(pathToInputFile);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-        VSCP = readLineReturnArrayInt(bufferedReader.readLine());
+        int[] VSCP = readLineReturnArrayInt(bufferedReader.readLine());
         totalProviders = VSCP[0];
         totalServices = VSCP[1];
         totalCountries = VSCP[2];
@@ -116,14 +118,6 @@ public class InputReader {
         }
     }
 
-    public ArrayList<Provider> getProviders() {
-        return providers;
-    }
-
-    public ArrayList<Project> getProjects() {
-        return projects;
-    }
-    
     private int[] readLineReturnArrayInt(String line) {
         String[] arr1 = line.split(" ");
         int[] numArray = new int[arr1.length];
@@ -135,9 +129,34 @@ public class InputReader {
         return numArray;
     }
 
+    public ArrayList<Provider> getProviders() {
+        return providers;
+    }
+
+    public ArrayList<Project> getProjects() {
+        return projects;
+    }
+
 	public int getTotalRegionalProviders() {
 		return totalRegionalProviders;
 	}
 
-    
+
+    public int getTotalProviders() {
+        return totalProviders;
+    }
+
+    public int getTotalServices() {
+        return totalServices;
+    }
+
+    public int getTotalCountries() {
+        return totalCountries;
+    }
+
+    public int getTotalProjects() {
+        return totalProjects;
+    }
+
+
 }

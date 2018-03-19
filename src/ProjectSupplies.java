@@ -1,10 +1,11 @@
 
 public class ProjectSupplies {
 
-	public int[] suppliesPerRegionalProvider;
 	private int totalRegionalProviders = 0;
-	
+	private int[] suppliesPerRegionalProvider;
+
 	public ProjectSupplies(int totalRegionalProviders) {
+		this.totalRegionalProviders = totalRegionalProviders;
 		this.suppliesPerRegionalProvider = new int[totalRegionalProviders];
 	}
 	

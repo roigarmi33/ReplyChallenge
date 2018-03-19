@@ -7,9 +7,6 @@ public class Provider {
     private ArrayList<RegionalProvider> regionalProviders;
     private int index;
 
-    public Provider(){
-    	this.providerName = "Ghost Provider";
-    }
 
     public Provider(String providerName, int totalProviderRegions){
     	this.setProviderName(providerName);

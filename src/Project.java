@@ -3,11 +3,7 @@ public class Project {
     private int penalty;
     private String countryName;
     private int[] servicesUnitsNeeded;
-    
-    public Project() {
-    	this.countryName = "Area 51";
-    }
-    		
+
     public Project(int penalty, String countryName, int[] servicesUnitsNeeded){
         this.penalty = penalty;
         this.countryName = countryName;

@@ -24,16 +24,16 @@ public class Output {
 	}
 	
 	public void print(String pathToOutputFile) throws IOException {
-		List<String> lines = new ArrayList<String>();
+		ArrayList<String> lines = new ArrayList<String>();
 		for (ProjectSupplies p : projectsSupplies) {
 			lines.add(readArrayIntReturnLine(p.getSuppliesPerRegionalProvider()));
 		}
 		
 		Charset utf8 = StandardCharsets.UTF_8;
 		try {
-		    //Files.write(Paths.get("file5.txt"), lines, utf8);
-		    Files.write(Paths.get(pathToOutputFile), lines, utf8,
-		            StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+
+			Files.write(Paths.get(pathToOutputFile), lines,  utf8, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}

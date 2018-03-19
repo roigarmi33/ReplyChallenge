@@ -7,12 +7,9 @@ public class RegionalProvider {
     private int[] countriesLatency;
     private int index;
 
-    public RegionalProvider(){
-    	this.region = "Nowhere to be found";
-    }
     
     public RegionalProvider(String region){
-    	this.setRegion(region);
+    	this.region = region;
     }
 
     public int getTotalPackagesAvailable() {
