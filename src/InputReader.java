@@ -31,8 +31,11 @@ public class InputReader {
     private ArrayList<Project> projects;
 
     public InputReader(String pathToInputFile) throws Exception {
-        // TODO check if file exists
-        readInput(pathToInputFile);
+        try{
+            readInput(pathToInputFile);
+        } catch (Exception e){
+            System.out.format("The file does not exists...");
+        }
     }
 
     private void readInput(String pathToInputFile) throws IOException {
