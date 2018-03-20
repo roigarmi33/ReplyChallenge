@@ -66,36 +66,59 @@ public class InputReader {
         for(int j = 0; j<totalProviders; j++){
 
         	line = bufferedReader.readLine();
-            providerName = line.split(" ")[0];
+
+        	providerName = line.split(" ")[0];
+
             totalProviderRegions = Integer.parseInt( line.split(" ")[1] );
             totalRegionalProviders += totalProviderRegions;
-        	Provider provider = new Provider(providerName, totalProviderRegions);
+
+            Provider provider = new Provider(providerName, totalProviderRegions);
         	provider.setIndex(j);
-        	
-            for (int i=0; i<totalProviderRegions; i++){
 
-            	String region = bufferedReader.readLine();
-                RegionalProvider regionalProvider = new RegionalProvider(region);
-                regionalProvider.setIndex(i);
+            addRegionsToProvider(bufferedReader, totalProviderRegions, provider);
 
-                line = bufferedReader.readLine();
-                regionalProvider.setTotalPackagesAvailable(Integer.parseInt(line.split(" ")[0]));
-                regionalProvider.setPackageUnitCost(Float.parseFloat(line.split(" ")[1]));
-                int[] tempArr = new int[totalServices];
-                for(int k=0; k<totalServices; k++){
-                    tempArr[k] = Integer.parseInt(line.split(" ")[k+2]);
-                }
-                regionalProvider.setServiceUnitsPerPackage(tempArr);
-
-                line = bufferedReader.readLine();
-                regionalProvider.setCountriesLatency(readLineReturnArrayInt(line));
-
-                provider.addRegionalProvider(regionalProvider);
-            }
-            
             providers.add(provider);
 
         }
+    }
+
+    private void addRegionsToProvider(BufferedReader bufferedReader, int totalProviderRegions, Provider provider) throws IOException {
+
+        for (int i = 0; i<totalProviderRegions; i++){
+
+            RegionalProvider regionalProvider = createRegionalProvider(bufferedReader, i);
+            provider.addRegionalProvider(regionalProvider);
+        }
+    }
+
+    private RegionalProvider createRegionalProvider(BufferedReader bufferedReader, int i) throws IOException {
+
+        String region = bufferedReader.readLine();
+        RegionalProvider regionalProvider = new RegionalProvider(region);
+        regionalProvider.setIndex(i);
+
+
+        String line = bufferedReader.readLine();
+        regionalProvider.setTotalPackagesAvailable(Integer.parseInt(line.split(" ")[0]));
+        regionalProvider.setPackageUnitCost(Float.parseFloat(line.split(" ")[1]));
+        regionalProvider.setServiceUnitsPerPackage(splitServiceStringToArray(line));
+
+
+        line = bufferedReader.readLine();
+        regionalProvider.setCountriesLatency(readLineReturnArrayInt(line));
+
+        return regionalProvider;
+    }
+
+
+
+
+    private int[] splitServiceStringToArray(String line) {
+        int[] tempArr = new int[totalServices];
+        for(int k=0; k<totalServices; k++){
+            tempArr[k] = Integer.parseInt(line.split(" ")[k+2]);
+        }
+        return tempArr;
     }
 
     private void setProjects(BufferedReader bufferedReader, int totalProjects, int totalServices) throws IOException {
