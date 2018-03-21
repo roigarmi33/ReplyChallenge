@@ -14,6 +14,7 @@ public class Provider {
         this.regionalProviders = new ArrayList<RegionalProvider>();
     }
 
+
 	public String getProviderName() {
 		return providerName;
 	}
@@ -21,6 +22,7 @@ public class Provider {
 	public void setProviderName(String providerName) {
 		this.providerName = providerName;
 	}
+
 
 	public int getTotalProviderRegions() {
 		return totalProviderRegions;
@@ -30,6 +32,7 @@ public class Provider {
 		this.totalProviderRegions = totalProviderRegions;
 	}
 
+
 	public ArrayList<RegionalProvider> getRegionalProviders() {
 		return regionalProviders;
 	}
@@ -38,9 +41,11 @@ public class Provider {
 		this.regionalProviders = regionalProviders;
 	}
 
+
 	public void addRegionalProvider(RegionalProvider regionalProvider){
 		this.regionalProviders.add(regionalProvider);
     }
+
 
 	public int getIndex() {
 		return index;
@@ -49,7 +54,8 @@ public class Provider {
 	public void setIndex(int index) {
 		this.index = index;
 	}
-	
+
+
 	public boolean isServiceAvailable(int serviceIndex) {
 		for (RegionalProvider rp : regionalProviders) {
 			if (rp.isServiceAvailable(serviceIndex)) {
@@ -58,7 +64,11 @@ public class Provider {
 		}
 		return false;
 	}
-	
+
+	/**
+	 *
+	 * @return -1 if the service is not available in any region
+	 */
 	public int getWhereServiceAvailable(int serviceIndex) {
 		for (RegionalProvider rp : regionalProviders) {
 			if (rp.isServiceAvailable(serviceIndex)) {

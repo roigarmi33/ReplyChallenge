@@ -94,8 +94,7 @@ public class InputReader {
     private RegionalProvider createRegionalProvider(BufferedReader bufferedReader, int i) throws IOException {
 
         String region = bufferedReader.readLine();
-        RegionalProvider regionalProvider = new RegionalProvider(region);
-        regionalProvider.setIndex(i);
+        RegionalProvider regionalProvider = new RegionalProvider(region, i);
 
 
         String line = bufferedReader.readLine();

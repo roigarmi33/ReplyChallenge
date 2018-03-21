@@ -29,7 +29,7 @@ public class Output {
 	public void print(String pathToOutputFile) throws IOException {
 		ArrayList<String> lines = new ArrayList<String>();
 		for (ProjectSupplies p : projectsSupplies) {
-			lines.add(readMatrixIntReturnLine(p.getAllSuppliesPerProvider()));
+			lines.add(p.getAllSuppliesPerRegionalProviderToString());
 		}
 		
 		Charset utf8 = StandardCharsets.UTF_8;
@@ -42,28 +42,5 @@ public class Output {
 		}
 	}
 
-    
-	private String readMatrixIntReturnLine(int[][] arr) {
-		// I suppose arr = [totalRegionalProviders][3]
-		// TODO get Provider | RegionalPorvider | Package. I don't want to know it's a matrix
-
-		String line = "";
-		boolean first = true;
-
-		// Look for a non empty assigned package
-		for (int i=0; i<arr.length; i++){
-			if( arr[i][2] != 0 ){
-				if (first){
-					line = arr[i][0] + " " + arr[i][1] + " " + arr[i][2];
-					first = false;
-				} else {
-					line = line + " " + arr[i][0] + " " + arr[i][1] + " " + arr[i][2];
-				}
-			}
-		}
-
-        return line; // return empty line == new line
-    }
-	
 	
 }
