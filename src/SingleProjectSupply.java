@@ -51,4 +51,17 @@ public class SingleProjectSupply {
     public void addPackageUnitsNumber(int units) {
         this.packageUnitsNumber += units;
     }
+
+    public boolean hasSameProviderAndRegionalProivder(SingleProjectSupply singleProjectSupply) {
+        return this.providerIndex == singleProjectSupply.getProviderIndex() &&
+               this.regionalProviderIndex == singleProjectSupply.getRegionalProviderIndex();
+    }
+
+    /**
+     * @param singleProjectSupply MUST have same providerIndex AND regionalProviderIndex
+     */
+    public void mergePackageUnitsNumber(SingleProjectSupply singleProjectSupply) {
+        this.packageUnitsNumber += singleProjectSupply.getPackageUnitsNumber();
+    }
+
 }

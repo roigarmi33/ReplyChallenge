@@ -11,7 +11,29 @@ public class ProjectSupplies {
 
 	public void addSingleProjectSupply(SingleProjectSupply singleProjectSupply) {
 		if (singleProjectSupply.getPackageUnitsNumber() != 0) {
-			this.suppliesPerProvider.add(singleProjectSupply);
+			if ( isInList(singleProjectSupply) ) {
+				mergeEqualTo(singleProjectSupply);
+			} else {
+				this.suppliesPerProvider.add(singleProjectSupply);
+			}
+		}
+	}
+
+	private boolean isInList(SingleProjectSupply singleProjectSupply) {
+		for (SingleProjectSupply sPS : suppliesPerProvider) {
+			if ( sPS.hasSameProviderAndRegionalProivder(singleProjectSupply) ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private void mergeEqualTo(SingleProjectSupply singleProjectSupply) {
+		// TODO refactos as a while
+		for (SingleProjectSupply sPS : suppliesPerProvider) {
+			if ( sPS.hasSameProviderAndRegionalProivder(singleProjectSupply) ) {
+				sPS.mergePackageUnitsNumber(singleProjectSupply);
+			}
 		}
 	}
 
