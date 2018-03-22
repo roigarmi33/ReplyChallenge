@@ -64,11 +64,11 @@ public class ProjectSupplies {
 	}
 
 	private String removeSpaceAtTheEnd(String line) {
-		return line.substring(1);
+		return line.substring(0, line.length() - 1);
 	}
 
 	private String removeSpaceAtTheStart(String line){
-		return line.substring(0, line.length()-1);
+		return line.substring(1);
 	}
 
 }
