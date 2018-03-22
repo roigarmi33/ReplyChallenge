@@ -4,10 +4,16 @@ public class SingleProjectSupply {
     private int regionalProviderIndex;
     private int packageUnitsNumber;
 
-    public void setProviderIndex(String line) {
-        providerIndex = 0;
-        regionalProviderIndex = 0;
-        packageUnitsNumber = 0;
+    public SingleProjectSupply() {
+        this.providerIndex = 0;
+        this.regionalProviderIndex = 0;
+        this.packageUnitsNumber = 0;
+    }
+
+    public SingleProjectSupply(int providerIndex, int regionalProviderIndex, int packageUnitsNumber) {
+        this.providerIndex = providerIndex;
+        this.regionalProviderIndex = regionalProviderIndex;
+        this.packageUnitsNumber = packageUnitsNumber;
     }
 
     public int getProviderIndex() {
@@ -36,4 +42,13 @@ public class SingleProjectSupply {
         this.packageUnitsNumber = packageUnitsNumber;
     }
 
+
+    public String toString() {
+        String line =	providerIndex + " " + regionalProviderIndex + " " + packageUnitsNumber;
+        return line;
+    }
+
+    public void addPackageUnitsNumber(int units) {
+        this.packageUnitsNumber += units;
+    }
 }
