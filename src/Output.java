@@ -27,7 +27,7 @@ public class Output {
 	}
 	
 	public void print(String pathToOutputFile) throws IOException {
-		ArrayList<String> lines = new ArrayList<String>();
+		ArrayList<String> lines = new ArrayList<tring>();
 		for (ProjectSupplies p : projectsSupplies) {
 			lines.add(p.getAllSuppliesPerRegionalProviderToString());
 		}
@@ -38,7 +38,7 @@ public class Output {
 			Files.write(Paths.get(pathToOutputFile), lines,  utf8, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
 
 		} catch (IOException e) {
-		    e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 

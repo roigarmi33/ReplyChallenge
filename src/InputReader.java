@@ -55,6 +55,8 @@ public class InputReader {
 
         setProviders(bufferedReader, totalProviders);
         setProjects(bufferedReader, totalProjects, totalServices);
+
+        //bufferedReader.close();
     }
 
     private void setProviders(BufferedReader bufferedReader, int totalProviders) throws IOException {
