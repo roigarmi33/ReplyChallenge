@@ -14,10 +14,6 @@ public class Main {
         Output out1 = Algorithm.FIFO(input1);
         out1.print("./output/out1.txt");
 
-        InputReader input11 = new InputReader("./input/first_adventure.in");
-        Output out11 = Algorithm.FIFO(input11);
-        out11.print("./output/out11.txt");
-/*
         InputReader input2 = new InputReader("./input/second_adventure.in");
         Output out2 = Algorithm.FIFO(input2);
         out2.print("./output/out2.txt");
@@ -29,6 +25,6 @@ public class Main {
         InputReader input4 = new InputReader("./input/fourth_adventure.in");
         Output out4 = Algorithm.FIFO(input4);
         out4.print("./output/out4.txt");
-*/
+
     }
 }

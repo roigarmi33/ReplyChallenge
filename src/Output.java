@@ -27,14 +27,14 @@ public class Output {
 	}
 	
 	public void print(String pathToOutputFile) throws IOException {
-		ArrayList<String> lines = new ArrayList<tring>();
+		ArrayList<String> lines = new ArrayList<String>();
 		for (ProjectSupplies p : projectsSupplies) {
 			lines.add(p.getAllSuppliesPerRegionalProviderToString());
 		}
 		
 		Charset utf8 = StandardCharsets.UTF_8;
 		try {
-
+			Files.deleteIfExists(Paths.get(pathToOutputFile));
 			Files.write(Paths.get(pathToOutputFile), lines,  utf8, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
 
 		} catch (IOException e) {
